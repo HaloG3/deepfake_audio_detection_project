@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Details - DeepFake Audio Detection</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="details-container">
+        <header class="details-header">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <h1>Technical Details</h1>
+        </header>
+        
+        <main class="details-content">
+            <div class="details-text">
+                <h2>Technologies Used</h2>
+                <p>Our project leverages a comprehensive stack of Python libraries and frameworks for audio processing and deep learning.</p>
+                
+                <h3>Core Technologies</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <h4>Python Libraries</h4>
+                        <ul>
+                            <li>os - File system operations</li>
+                            <li>numpy - Numerical computing</li>
+                            <li>librosa - Audio processing</li>
+                            <li>matplotlib - Visualization</li>
+                            <li>sklearn - Model evaluation</li>
+                        </ul>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <h4>Deep Learning</h4>
+                        <ul>
+                            <li>TensorFlow - ML framework</li>
+                            <li>Keras - High-level API</li>
+                            <li>CNN Architecture</li>
+                            <li>Custom loss functions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Implementation Details</h3>
+                <div class="implementation-details">
+                    <h4>Data Processing Pipeline</h4>
+                    <ul>
+                        <li>Sample Rate: 16000 Hz</li>
+                        <li>Duration: 5 seconds per clip</li>
+                        <li>Mel Spectrograms: 128 frequency bins</li>
+                        <li>Time Steps: 109 (padded/truncated)</li>
+                    </ul>
+
+                    <h4>Model Architecture</h4>
+                    <ul>
+                        <li>Input Shape: (128, 109, 1)</li>
+                        <li>Convolutional Layers: 2 layers</li>
+                        <li>Pooling Layers: 2 layers</li>
+                        <li>Dense Layers: 128 units</li>
+                        <li>Output: 2 classes (softmax)</li>
+                    </ul>
+
+                    <h4>Training Process</h4>
+                    <ul>
+                        <li>Dataset: ASVspoof2019_LA_train</li>
+                        <li>Split: 80% training, 20% validation</li>
+                        <li>Batch Size: 32</li>
+                        <li>Epochs: 10</li>
+                        <li>Optimizer: Adam</li>
+                    </ul>
+                </div>
+
+                <h3>File Structure</h3>
+                <div class="file-structure">
+                    <pre>
+project/
+├── LA/
+│   ├── ASVspoof2019_LA_train/
+│   │   └── flac/
+│   └── ASVspoof2019_LA_cm_protocols/
+│       └── ASVspoof2019.LA.cm.train.trn.txt
+├── TestEvaluation/
+│   └── test_eval.txt
+└── audio_classifier.h5
+                    </pre>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 

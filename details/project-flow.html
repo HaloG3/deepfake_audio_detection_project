@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Flow - DeepFake Audio Detection</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="details-container">
+        <header class="details-header">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <h1>Project Flow</h1>
+        </header>
+        
+        <main class="details-content">
+            <div class="details-text">
+                <h2>Project Workflow</h2>
+                <p>Our deepfake audio detection system follows a comprehensive workflow from data collection to model deployment.</p>
+                
+                <div class="workflow-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>1. Data Collection</h3>
+                            <p>Utilizing the ASVspoof2019 dataset</p>
+                            <ul>
+                                <li>Source: ASVspoof2019_LA_train</li>
+                                <li>Format: FLAC audio files</li>
+                                <li>Classes: Bonafide and Spoof</li>
+                                <li>Protocol files for labeling</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>2. Data Preprocessing</h3>
+                            <p>Standardized audio processing pipeline</p>
+                            <ul>
+                                <li>Audio loading and resampling</li>
+                                <li>Mel spectrogram extraction</li>
+                                <li>Feature normalization</li>
+                                <li>Data augmentation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>3. Model Development</h3>
+                            <p>CNN-based deep learning model</p>
+                            <ul>
+                                <li>Architecture design</li>
+                                <li>Layer configuration</li>
+                                <li>Hyperparameter tuning</li>
+                                <li>Model training</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>4. Evaluation</h3>
+                            <p>Comprehensive model assessment</p>
+                            <ul>
+                                <li>Training metrics tracking</li>
+                                <li>Validation performance</li>
+                                <li>Confusion matrix analysis</li>
+                                <li>Error analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>5. Security Measures</h3>
+                            <p>Robust security implementation</p>
+                            <ul>
+                                <li>Input validation</li>
+                                <li>Model protection</li>
+                                <li>Secure file handling</li>
+                                <li>Access control</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Security Features</h3>
+                <div class="security-features">
+                    <div class="security-item">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Input Validation</h4>
+                        <p>Strict validation of audio file formats and content</p>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-lock"></i>
+                        <h4>Model Protection</h4>
+                        <p>Secure storage and access control for the trained model</p>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-shield-virus"></i>
+                        <h4>Fraud Prevention</h4>
+                        <p>Advanced detection of manipulation attempts</p>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-user-shield"></i>
+                        <h4>Access Control</h4>
+                        <p>Role-based access to system features</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 

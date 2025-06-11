@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Processing - DeepFake Audio Detection</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="details-container">
+        <header class="details-header">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <h1>Audio Processing</h1>
+        </header>
+        
+        <main class="details-content">
+            <div class="details-text">
+                <h2>Audio Processing Pipeline</h2>
+                <p>Our system implements a sophisticated audio processing pipeline to prepare audio files for deep learning analysis.</p>
+                
+                <h3>Processing Parameters</h3>
+                <div class="parameters-grid">
+                    <div class="parameter-item">
+                        <i class="fas fa-wave-square"></i>
+                        <h4>Sample Rate</h4>
+                        <p>16000 Hz</p>
+                        <span>Standard sampling rate for speech processing</span>
+                    </div>
+                    <div class="parameter-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>Duration</h4>
+                        <p>5 seconds</p>
+                        <span>Fixed length for consistent processing</span>
+                    </div>
+                    <div class="parameter-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Mel Bins</h4>
+                        <p>128 bins</p>
+                        <span>Frequency resolution for spectrograms</span>
+                    </div>
+                    <div class="parameter-item">
+                        <i class="fas fa-ruler"></i>
+                        <h4>Time Steps</h4>
+                        <p>109 steps</p>
+                        <span>Fixed width for model input</span>
+                    </div>
+                </div>
+
+                <h3>Processing Steps</h3>
+                <div class="processing-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Audio Loading</h4>
+                            <p>Audio files are loaded using librosa.load with specified sample rate and duration</p>
+                            <ul>
+                                <li>Sample rate: 16000 Hz</li>
+                                <li>Duration: 5 seconds</li>
+                                <li>Format: FLAC files</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Spectrogram Generation</h4>
+                            <p>Mel spectrograms are extracted using librosa.feature.melspectrogram</p>
+                            <ul>
+                                <li>128 Mel frequency bins</li>
+                                <li>Power spectrogram conversion</li>
+                                <li>Log-mel spectrogram computation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Normalization</h4>
+                            <p>Spectrograms are converted to decibels and normalized</p>
+                            <ul>
+                                <li>Power to decibel conversion</li>
+                                <li>Amplitude normalization</li>
+                                <li>Dynamic range compression</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Padding/Truncation</h4>
+                            <p>All spectrograms are standardized to MAX_TIME_STEPS</p>
+                            <ul>
+                                <li>Zero padding for shorter sequences</li>
+                                <li>Truncation for longer sequences</li>
+                                <li>Fixed width: 109 time steps</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Feature Extraction</h3>
+                <p>The system extracts several key features from the audio signals:</p>
+                <ul>
+                    <li>Mel-frequency cepstral coefficients (MFCCs)</li>
+                    <li>Spectral contrast</li>
+                    <li>Chroma features</li>
+                    <li>Temporal features</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 
