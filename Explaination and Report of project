@@ -1,0 +1,125 @@
+ ## Deepfake Audio Detection using Convolutional Neural Networks (CNN) - Project Report
+
+### 1. Introduction
+This project focuses on developing a deepfake audio detection model using Convolutional Neural Networks (CNNs). The primary goal is to distinguish between genuine ("bonafide") and manipulated ("spoof") audio samples.
+
+### 2. Technologies Used
+The project utilizes several key Python libraries and frameworks for audio processing, numerical operations, and deep learning:
+* **os:** For interacting with the operating system, particularly for file path manipulation.
+* **numpy:** A fundamental package for numerical computing in Python.
+* **librosa:** A Python library for audio analysis, used here for loading audio files and extracting Mel spectrograms.
+* **tensorflow:** An open-source machine learning framework.
+* **tensorflow.keras:** A high-level API for building and training deep learning models, integrated within TensorFlow.
+    * Input, Conv2D, MaxPooling2D, Flatten, Dense, Dropout layers are used for model construction.
+    * Model for defining the CNN architecture.
+    * to_categorical for one-hot encoding labels.
+* **matplotlib.pyplot:** For creating visualizations, specifically intended for plotting the confusion matrix.
+* **sklearn.metrics:** The confusion_matrix and ConfusionMatrixDisplay modules are imported for model evaluation and visualization.
+
+### 3. Dataset
+The model is trained using the **ASVspoof2019_LA_train** dataset.
+* **Data Path:** LA/ASVspoof2019_LA_train/flac
+* **Label File Path:** LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.train.trn.txt
+* The dataset consists of two classes: "bonafide" (genuine) and "spoof" (deepfake).
+
+### 4. Data Preprocessing
+Audio files undergo a series of preprocessing steps to prepare them for the CNN model:
+* **Parameters:**
+    * SAMPLE_RATE: 16000 Hz
+    * DURATION: 5 seconds per audio clip
+    * N_MELS: 128 Mel frequency bins for the spectrograms
+    * MAX_TIME_STEPS: 109, ensuring all spectrograms have a consistent width.
+* **Steps:**
+    1.  Audio files are loaded using librosa.load at the specified sample rate and duration.
+    2.  Mel spectrograms are extracted from the audio using librosa.feature.melspectrogram.
+    3.  The spectrograms are converted to decibels (librosa.power_to_db).
+    4.  All spectrograms are padded with zeros or truncated to ensure a uniform MAX_TIME_STEPS for consistent input dimensions to the CNN.
+    5.  Labels ("bonafide" or "spoof") are read from the protocol file and converted into numerical format (1 for bonafide, 0 for spoof).
+    6.  The numerical labels are then one-hot encoded using to_categorical.
+    7.  The dataset is split into training and validation sets, with 80% for training and 20% for validation.
+
+### 5. Model Architecture (CNN)
+The CNN model is designed to classify audio as bonafide or spoof:
+* **Input Shape:** (128, 109, 1), representing (N_MELS, MAX_TIME_STEPS, channels).
+* **Layers:**
+    * **Convolutional Layer 1:** Conv2D with 32 filters, a (3, 3) kernel size, and 'relu' activation.
+    * **Max Pooling Layer 1:** MaxPooling2D with a (2, 2) pool size.
+    * **Convolutional Layer 2:** Conv2D with 64 filters, a (3, 3) kernel size, and 'relu' activation.
+    * **Max Pooling Layer 2:** MaxPooling2D with a (2, 2) pool size.
+    * **Flatten Layer:** Flattens the output from the convolutional layers into a 1D vector.
+    * **Dense Layer 1:** A fully connected Dense layer with 128 units and 'relu' activation.
+    * **Dropout Layer:** Dropout with a rate of 0.5 to prevent overfitting.
+    * **Output Layer:** A Dense layer with NUM_CLASSES (2) units and 'softmax' activation for probability distribution over the classes.
+
+### 6. Training Configuration
+* **Optimizer:** 'adam'
+* **Loss Function:** 'categorical_crossentropy'
+* **Metrics:** 'accuracy'
+* **Batch Size:** 32
+* **Epochs:** 10
+
+### 7. Training Results
+The model was trained for 10 epochs. Below is a summary of the training and validation performance:
+* **Epoch 1:**
+    * Loss: 0.8655
+    * Accuracy: 0.8898
+    * Validation Loss: 0.6782
+    * Validation Accuracy: 0.5757
+* **Epoch 2:**
+    * Loss: 0.1696
+    * Accuracy: 0.9287
+    * Validation Loss: 1.2812
+    * Validation Accuracy: 0.2926
+* **Epoch 3:**
+    * Loss: 0.1261
+    * Accuracy: 0.9503
+    * Validation Loss: 1.3782
+    * Validation Accuracy: 0.3820
+* **Epoch 4:**
+    * Loss: 0.0902
+    * Accuracy: 0.9663
+    * Validation Loss: 3.0074
+    * Validation Accuracy: 0.2179
+* **Epoch 5:**
+    * Loss: 0.0537
+    * Accuracy: 0.9809
+    * Validation Loss: 2.4005
+    * Validation Accuracy: 0.2374
+* **Epoch 6:**
+    * Loss: 0.0393
+    * Accuracy: 0.9877
+    * Validation Loss: 5.1723
+    * Validation Accuracy: 0.2266
+* **Epoch 7:**
+    * Loss: 0.0264
+    * Accuracy: 0.9911
+    * Validation Loss: 5.7586
+    * Validation Accuracy: 0.2573
+* **Epoch 8:**
+    * Loss: 0.0893
+    * Accuracy: 0.9678
+    * Validation Loss: 6.3777
+    * Validation Accuracy: 0.2841
+* **Epoch 9:**
+    * Loss: 0.0281
+    * Accuracy: 0.9915
+    * Validation Loss: 7.9073
+    * Validation Accuracy: 0.1874
+* **Epoch 10:**
+    * Loss: 0.0263
+    * Accuracy: 0.9913
+    * Validation Loss: 8.0507
+    * Validation Accuracy: 0.2047
+
+It can be observed that while the training accuracy consistently increased and loss decreased, the validation accuracy fluctuated and generally decreased, with validation loss significantly increasing. This suggests that the model might be overfitting to the training data.
+
+### 8. Model Saving
+The trained model is saved as audio_classifier.h5.
+
+### 9. Evaluation and Visualization
+The project includes a section for evaluating the model on a separate test dataset located at ./TestEvaluation.
+* The saved model (audio_classifier.h5) is loaded for prediction.
+* Test audio files are preprocessed in the same manner as the training data (loading, Mel spectrogram extraction, padding/truncation).
+* Predictions are made on the test data, and probabilities are converted to predicted classes.
+* True labels for the test files are loaded from test_eval.txt.
+* The intention is to use matplotlib.pyplot and sklearn.metrics.confusion_matrix, ConfusionMatrixDisplay to visualize the model's performance using a confusion matrix.
