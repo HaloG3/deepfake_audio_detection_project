@@ -32,7 +32,7 @@ deepfake-voice-detection/
 
 ## Technologies Used
 
-- **Frontend**:
+- **Frontend for Visiuals only**:
   - HTML5
   - CSS3 (with modern features like CSS Grid and Flexbox)
   - JavaScript (ES6+)
@@ -110,9 +110,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
+Your Name - [@MohitRao](https://twitter.com/@MOHITRao1361581) - mohitrao333034@gmail.com
 
-Project Link: [https://github.com/yourusername/deepfake-voice-detection](https://github.com/yourusername/deepfake-voice-detection)
+Project Link: [https://halog3.github.io/deepfake_audio_detection_project/](https://halog3.github.io/deepfake_audio_detection_project/)
 
 ## Acknowledgments
 
